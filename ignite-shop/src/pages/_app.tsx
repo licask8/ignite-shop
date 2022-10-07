@@ -1,11 +1,11 @@
 import { AppProps } from "next/app"
 import { globalStyle } from "../styles/global"
-import {Container, Header } from '../styles/pages/app'
-
-import logo from '../assets/logo.svg'
+import {Container } from '../styles/pages/app'
 
 
-import Image  from 'next/image'
+import { HeaderContainer } from "../components/Header/styles"
+import { Header } from "../components/Header";
+import { CartContextProvider } from "../context/CartContext";
 
 // fora do MyApp
 globalStyle();
@@ -14,13 +14,12 @@ globalStyle();
 export default function App({ Component, pageProps }: AppProps) {
   
   return (
-    <Container>
-      <Header>
-        <Image src={logo} alt="" />
-      </Header>
-
-      <Component {...pageProps} />
+   <CartContextProvider>
+     <Container>
+        <Header />
+        <Component {...pageProps} />
     </Container>
+   </CartContextProvider>
   );
 }
 
